@@ -56,18 +56,36 @@ function playRound(playerSelection, computerSelection) {
       } else if (computerSelection == 'scissors') {
         return "You Tied! Scissors can't beat Scissors!";
       }
+    default:
+      alert('Please enter a valid input!');
+      return 'Error Input';
+  }
+}
+
+function sanitize(inputString) {
+  try {
+    return inputString.toLowerCase().trim();
+  } catch (err) {
+    alert('Please enter a valid input!');
+    return 'Error Input';
   }
 }
 
 function game() {
   while (!(playerScore >= 5 || computerScore >= 5)) {
-    let playerSelection = prompt('Pick from Rock Paper Scissors...');
-    //Quitting Option
-    if (playerSelection == 'quit') {
-      break;
+    let playerSelection = sanitize(prompt('Pick from Rock Paper Scissors...'));
+    if (playerSelection != 'Error Input') {
+      //Quitting Option -- prior to round start (in game loop)
+      if (playerSelection == 'quit') {
+        break;
+      }
+
+      let computerSelection = computerPlay();
+      let roundResult = playRound(playerSelection, computerSelection);
+      if (roundResult != 'Error Input') {
+        alert(`The computer picked ... ${capitalize(computerSelection)}!`);
+        alert(roundResult);
+      }
     }
-    let computerSelection = computerPlay();
-    alert(`The computer picked ... ${capitalize(computerSelection)}!`);
-    alert(playRound(playerSelection, computerSelection));
   }
 }

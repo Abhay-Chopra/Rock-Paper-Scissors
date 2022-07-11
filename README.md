@@ -6,4 +6,4 @@
 
 ## To Do's:
 
-<ol><li>Create game loop and logic</li><li>Add front end and animations</li><li>Add documentation to functions</li><li>Sanitize input</li><li>Fix game loop</li></ol>
+<ol><li>Add front end and animations</li><li>Add documentation to functions</ol>
